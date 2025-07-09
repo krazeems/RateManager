@@ -1,4 +1,3 @@
-
 <h1 align="center">🔁 RateManager</h1>
 <p align="center">
   A lightweight utility for handling <strong>cooldowns</strong> and <strong>rate limits</strong> in Roblox Lua.
@@ -11,27 +10,83 @@
 
 ## 🚀 Features
 
-- ⏱️ Debounce (classic cooldown)
-- 🔁 RateLimit (e.g. 10 calls per 60 seconds)
-- 🧱 Optional call queueing (RateLimit only)
-- ⏸️ Pause & Resume
-- 🔄 Manual `Reset()` and `Cancel()` (with queue control)
-- 🔔 Signals: `OnReset`, `OnLimitHit`
-- 📦 Self-contained, no external dependencies
-- 🧼 MIT licensed
+- ⏱️ Debounce (classic cooldown)  
+- 🔁 RateLimit (e.g. 10 calls per 60 seconds)  
+- 🧱 Optional call queueing (RateLimit only)  
+- ⏸️ Pause & Resume  
+- 🔄 Manual `Reset()` and `Cancel()` (with queue control)  
+- 🔔 Signals: `OnReset`, `OnLimitHit`  
+- 📦 Self-contained, no external dependencies  
+- 🧼 MIT licensed  
 
 ---
 
 ## 📦 Installation
 
-### Manual
+<details>
+  <summary><strong>Manual</strong></summary>
 
-1. Drop `RateManager.lua` into your project (e.g. `ReplicatedStorage.Packages`)
+1. Drop `RateManager.lua` into your project (e.g. `ReplicatedStorage.Packages`)  
 2. Require it in your scripts:
 
 ```lua
 local RateManager = require(game.ReplicatedStorage.Packages.RateManager)
+````
+
+</details>
+
+<details>
+  <summary><strong>Wally (Recommended)</strong></summary>
+
+Add RateManager as a dependency in your `wally.toml`:
+
+```toml
+[dependencies]
+ratemanager = "krazeems/ratemanager@1.0.0"
 ```
+
+Then run in your terminal:
+
+```bash
+wally install
+```
+
+This downloads RateManager (including bundled Signal) to your `wally_modules` folder.
+
+</details>
+
+<details>
+  <summary><strong>Rojo</strong></summary>
+
+Make sure your `default.project.json` (or `.rojo.json`) includes RateManager so Rojo syncs it to Roblox:
+
+```json
+{
+  "name": "MyProject",
+  "tree": {
+    "$className": "Folder",
+    "ReplicatedStorage": {
+      "$className": "Folder",
+      "RateManager": {
+        "$path": "wally_modules/krazeems/ratemanager/RateManager"
+      }
+    }
+  }
+}
+```
+
+Adjust the `$path` if you use manual installation or a different directory.
+
+</details>
+
+<details>
+  <summary><strong>Require in your code</strong></summary>
+
+```lua
+local RateManager = require(game:GetService("ReplicatedStorage"):WaitForChild("RateManager"))
+```
+
+</details>
 
 ---
 
@@ -117,28 +172,28 @@ end)
 RateManager.new(delayOrMaxCalls: number, perSeconds?: number, mode?: RateManager.Mode) → RateManager
 ```
 
-| Method                            | Description                                                  |
-|-----------------------------------|--------------------------------------------------------------|
-| `:Execute(func, ...)`             | Executes the callback if allowed                             |
-| `:Reset(dropQueuedCalls?)`        | Ends cooldown/rate window and fires `OnReset`                |
-| `:Cancel(dropQueuedCalls?)`       | Ends it silently, skips `OnReset`                            |
-| `:Pause()` / `:Resume()`          | Temporarily pause/resume timer logic                         |
-| `:IsOnCooldown()`                 | Returns true if currently blocked                            |
-| `:GetTimeLeft()`                  | Returns remaining cooldown time (in seconds)                 |
-| `:SetQueueEnabled(enabled: bool)` | Enables queueing (RateLimit mode only)                       |
-| `:Destroy()`                      | Cleans up signals and state                                  |
+| Method                            | Description                                   |
+| --------------------------------- | --------------------------------------------- |
+| `:Execute(func, ...)`             | Executes the callback if allowed              |
+| `:Reset(dropQueuedCalls?)`        | Ends cooldown/rate window and fires `OnReset` |
+| `:Cancel(dropQueuedCalls?)`       | Ends it silently, skips `OnReset`             |
+| `:Pause()` / `:Resume()`          | Temporarily pause/resume timer logic          |
+| `:IsOnCooldown()`                 | Returns true if currently blocked             |
+| `:GetTimeLeft()`                  | Returns remaining cooldown time (in seconds)  |
+| `:SetQueueEnabled(enabled: bool)` | Enables queueing (RateLimit mode only)        |
+| `:Destroy()`                      | Cleans up signals and state                   |
 
-| Event             | Description                                 |
-|-------------------|---------------------------------------------|
-| `OnReset`         | Fires when timer or rate window is reset    |
-| `OnLimitHit`      | Fires when a call is blocked by cooldown    |
+| Event        | Description                              |
+| ------------ | ---------------------------------------- |
+| `OnReset`    | Fires when timer or rate window is reset |
+| `OnLimitHit` | Fires when a call is blocked by cooldown |
 
 ---
 
 ## 📎 Links
 
-- 🔗 [Creator Store](https://create.roblox.com/store/asset/110870034905030/RateManager)
-- 🧵 [DevForum Post](https://devforum.roblox.com/t/new-ratemanager-cooldown-rate-limiting-utility-debounce-rolling-limit-queued-calls-pause-resume/3803316)
+* 🔗 [Creator Store](https://create.roblox.com/store/asset/110870034905030/RateManager)
+* 🧵 [DevForum Post](https://devforum.roblox.com/t/new-ratemanager-cooldown-rate-limiting-utility-debounce-rolling-limit-queued-calls-pause-resume/3803316)
 
 ---
 
