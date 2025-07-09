@@ -1,0 +1,9 @@
+{
+  "name": "RateManager",
+  "tree": {
+    "$className": "Folder",
+    "RateManager": {
+      "$path": "RateManager"
+    }
+  }
+}
