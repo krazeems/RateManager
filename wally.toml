@@ -1,6 +1,6 @@
 [package]
-name = "marzouk24881/ratemanager"
+name = "krazeems/ratemanager"
 version = "1.0.0"
 license = "MIT"
 realm = "shared"
-description = "Roblox Lua utility for debounce and rate limiting"
+description = "Roblox Lua utility for debounce and rate limiting with bundled Signal."
