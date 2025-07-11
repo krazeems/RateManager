@@ -1,6 +1,9 @@
 [package]
-name = "krazeems/ratemanager"
+name = "kareemmarzouk/ratemanager-main"
 version = "1.0.0"
-license = "MIT"
+registry = "https://github.com/UpliftGames/wally-index"
 realm = "shared"
+license = "MIT"
 description = "Roblox Lua utility for debounce and rate limiting with bundled Signal."
+
+[dependencies]
